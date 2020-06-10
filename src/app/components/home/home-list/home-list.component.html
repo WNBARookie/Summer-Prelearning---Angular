@@ -1,0 +1,31 @@
+<p-table #bookTable [value]="filterText === undefined ? books : filteredBooks"
+  styleClass="ui-table-customers .ui-table-caption .ui-widget-header"
+  [rowHover]="true">
+  <ng-template pTemplate="caption">
+    All Books
+    <div class="search-container.ui-table-caption">
+      <input pInputText type="text" #filterText [disabled]="!canSearch">
+      <button pButton type="button" label="Search"
+        class="ui-button-raised ui-button-info" (click)="onSearch({ target: {
+      value: filterText.value } })" style="margin-left: 1em;"></button>
+    </div>
+
+
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th field="title">Title</th>
+      <th>Author</th>
+      <th>Genre</th>
+      <th>Publisher</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-book>
+    <tr class="ui-selectable-row" (click)="onSelectBook(book)">
+      <td>{{book.title}}</td>
+      <td>{{book.author}}</td>
+      <td>{{book.genre}}</td>
+      <td>{{book.publisher}}</td>
+    </tr>
+  </ng-template>
+</p-table>

@@ -1,0 +1,75 @@
+<p-panel [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+  <p-header>
+    <span class="ui-panel-title"
+      style="font-size:16px;display:inline-block;margin-top:2px">{{viewMode === 'Add' ? 'Add Book': 'Edit Book'}}</span>
+  </p-header>
+
+  <div class="container">
+    <form [formGroup]="homeForm" (ngSubmit)="onSaveClick()">
+      <!-- title -->
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input pInputText [class.is-invalid]="title.invalid &&
+        title.touched" formControlName="title" type="text" class="form-control"
+          placeholder="Title">
+        <div *ngIf="title.invalid &&
+        title.touched">
+          <small *ngIf="title.hasError('required')" class="text-danger">Title is
+            required</small>
+        </div>
+      </div>
+
+      <!-- author -->
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input pInputText [class.is-invalid]="author.invalid &&
+        author.touched" formControlName="author" type="text"
+          class="form-control" placeholder="Author">
+        <div *ngIf="author.invalid &&
+        author.touched">
+          <small *ngIf="author.hasError('required')" class="text-danger">Author
+            is
+            required</small>
+        </div>
+      </div>
+
+      <!-- genre -->
+      <div class="form-group">
+        <label for="genre">Genre</label>
+        <input pInputText [class.is-invalid]="genre.invalid &&
+        genre.touched" formControlName="genre" type="text" class="form-control"
+          placeholder="Genre">
+        <div *ngIf="genre.invalid &&
+        genre.touched">
+          <small *ngIf="genre.hasError('required')" class="text-danger">Genre is
+            required</small>
+        </div>
+      </div>
+
+      <!-- publisher -->
+      <div class="form-group">
+        <label for="publisher">Publisher</label>
+        <input pInputText [class.is-invalid]="publisher.invalid &&
+        publisher.touched" formControlName="publisher" type="text"
+          class="form-control" placeholder="Publisher">
+        <div *ngIf="publisher.invalid &&
+        publisher.touched">
+          <small *ngIf="publisher.hasError('required')"
+            class="text-danger">Publisher is
+            required</small>
+        </div>
+      </div>
+
+
+      <!-- submit -->
+      <button [disabled]="!homeForm.valid" pButton type="button"
+        class="ui-button-raised ui-button-success" type="button"
+        style="padding: 5px 15px; margin-right: 10px;"
+        (click)="onSaveClick()">Save</button>
+      <button pButton type="button" class="ui-button-raised ui-button-secondary"
+        type="button" style="padding: 5px 15px;"
+        (click)="onCancelClick()">Cancel</button>
+
+    </form>
+  </div>
+</p-panel>

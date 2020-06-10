@@ -1,0 +1,12 @@
+<p-panel header="Books">
+  <button *ngIf="!formEnabled" pButton type="button" label="Add Book"
+    class="ui-button-raised add-button" (click)="addBook()"></button>
+  <app-home-list [books]="books" [viewMode]="viewMode"
+    (selectBook)="selectBook($event)"></app-home-list>
+  <app-home-details *ngIf=" detailsEnabled" [book]="selectedBook"
+    (viewMode)="viewModeChanged($event)">
+  </app-home-details>
+  <app-home-form *ngIf="formEnabled" (viewModeChange)="viewModeChanged($event)"
+    [book]="selectedBook" [viewMode]="viewMode">
+  </app-home-form>
+</p-panel>
